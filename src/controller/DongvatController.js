@@ -12,15 +12,49 @@ class DongvatController {
 
   create (req, res) {
     const params = req.body;
-    console.log(req);
-    const dongvat = DongVatModel.create(params);
-    res.status(200).json(dongvat);
+    DongVatModel.create(params)
+      .then((dongvat) => {
+        res.status(201).json(dongvat);
+      })
+      .catch((err) => { console.log(err); });
+  }
+
+  update (req, res) {
+    const params = req.body;
+    const id = req.params.id;
+    const condition = {
+      where: {
+        IDDongVat: id,
+      },
+    };
+    DongVatModel.update(params, condition)
+      .then((i) => {
+        DongVatModel.findByPk(id).then((dongvat) => {
+          res.status(201).json(dongvat);
+        });
+      })
+      .catch((err) => { console.log(err); });
+  }
+
+  delete (req, res) {
+    const id = req.params.id;
+    const condition = {
+      where: {
+        IDDongVat: id,
+      },
+    };
+    DongVatModel.destroy(condition)
+      .then(() => {
+        res.status(201).json('Thành công!');
+      })
+      .catch((err) => { console.log(err); });
   }
 
   show (req, res, next) {
     const id = req.params.slug;
     DongVatModel.findByPk(id)
       .then((dongvat) => {
+        console.log(dongvat);
         res.status(200).json(dongvat);
       })
       .catch(next);

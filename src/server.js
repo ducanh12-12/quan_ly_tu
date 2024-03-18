@@ -4,12 +4,14 @@ const app = express();
 const port = 8000;
 const cors = require('cors');
 const { Sequelize } = require('sequelize');
+const bodyParser = require('body-parser');
 const sequelize = require('./config/db/index');
 const route = require('./routes');
 const db = {};
 app.use(express.urlencoded({
   extended: true,
 }));
+app.use(bodyParser.json());
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 route(app);
