@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const dbConfig = require('./config');
-module.exports = new Sequelize('quanlysothu', dbConfig.db.user,
+
+module.exports = new Sequelize(dbConfig.db.database, dbConfig.db.user,
   dbConfig.db.password, {
     host: dbConfig.db.host,
     dialect: dbConfig.db.dialect,
