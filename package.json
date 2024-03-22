@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon src/server.js",
+    "serve": "set NODE_ENV=dev && nodemon src/server.js",
     "start": "npm run serve",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.18.1",
     "mysql2": "^3.9.2",
     "nodemon": "^2.0.20",

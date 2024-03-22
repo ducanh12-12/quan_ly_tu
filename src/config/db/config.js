@@ -1,10 +1,11 @@
+require('dotenv').config();
 const config = {
   db: {
     /* don't expose password or any sensitive info, done only for demo */
-    host: 'localhost',
-    user: 'root',
-    password: '123456',
-    database: 'quanlysothu',
+    host: process.env.HOST_NAME,
+    user: process.env.USER_NAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE_NAME,
     connectTimeout: 60000,
     dialect: 'mysql',
     pool: {
